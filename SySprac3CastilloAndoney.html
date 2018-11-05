@@ -1,0 +1,317 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>PR&Aacute;CTICA 3: Se&ntilde;ales en tiempo continuo</title><meta name="generator" content="MATLAB 8.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-11-05"><meta name="DC.source" content="SySprac3CastilloAndoney.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>PR&Aacute;CTICA 3: Se&ntilde;ales en tiempo continuo</h1><!--introduction--><div><ul><li>Andoney Valdez Daniel</li><li>Castillo Silva Marlene Vanessa</li></ul></div><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">INTRODUCCION</a></li><li><a href="#3">EJERCICIO 1</a></li><li><a href="#4">EJERCICIO 2</a></li><li><a href="#5">EJERCICIO 3</a></li><li><a href="#6">EJERCICIO 4</a></li><li><a href="#7">EJERCICIO 6</a></li><li><a href="#8">EJERCICIO 7</a></li><li><a href="#9">REFERENCIAS</a></li></ul></div><h2>INTRODUCCION<a name="1"></a></h2><p>&iquest;Qu&eacute; es Matlab? Matlab significa "Matrix Laboratory" o en espa&ntilde;ol "Laboratorio de  la idea de ayudar a los estudiantes para que ya no programaran una serie  de algoritmos para llevar a cabo al&uacute;n an&aacute;lisis n&uacute;merico. Actualmente  Matlab es distribuido por MathWorks, Inc desde el a&ntilde;o 1984.  Existen softwares que son parecidos a Matlab con la diferencia que son libres que son:</p><div><ul><li>Octave el cual es un entorno orientado al c&aacute;lculo num&eacute;rico cient&iacute;fico.   Adem&aacute;s, cuenta con herramientas para la resoluci&oacute;n de problemas de   c&aacute;lculo num&eacute;rico lineales y no lineales: &aacute;lgebra lineal, aproximaci&oacute;n de   ra&iacute;ces de ecuaciones, integraci&oacute;n num&eacute;rica, integraci&oacute;n de ecuaciones   diferenciales, etc., as&iacute; como para la representaci&oacute;n de gr&aacute;ficos en dos y   tres dimensiones. Aqu&iacute; puedes consultar m&aacute;s informaci&oacute;n sobre este   software: <a href="https://rodin.uca.es/xmlui/bitstream/handle/10498/18932/Octave_Calculo_Numerico.pdf?sequence=1&amp;isAllowed=y">https://rodin.uca.es/xmlui/bitstream/handle/10498/18932/Octave_Calculo_Numerico.pdf?sequence=1&amp;isAllowed=y</a></li><li>Python es un lenguaje de programaci&oacute;n de alto nivel, el cual es   compatible con el lenguaje C. Al ser un software de c&oacute;digo abierto y   gratuito. Aqu&iacute; puedes consultar m&aacute;s informac&oacute;n sobre este software:   <i><a href="http://colenak.ptkpt.net/_lain.php?_lain=3721">http://colenak.ptkpt.net/_lain.php?_lain=3721</a></i></li></ul></div><h2>EJERCICIO 1<a name="3"></a></h2><pre class="codeinput">fun1;
+</pre><h2>EJERCICIO 2<a name="4"></a></h2><pre class="codeinput"><span class="comment">%w=-2:0.01:2;</span>
+<span class="comment">%figure(1)</span>
+<span class="comment">%fu1;</span>
+</pre><h2>EJERCICIO 3<a name="5"></a></h2><pre class="codeinput">figure(2)
+TF;
+</pre><img vspace="5" hspace="5" src="SySprac3CastilloAndoney_01.png" alt=""> <h2>EJERCICIO 4<a name="6"></a></h2><p>M 1.1 Inline Functions</p><pre class="codeinput"> f = @(t) exp(-t).*cos(2*pi*t);
+
+ figure(3)
+ subplot (2,1,1)
+ t=(-2:2);
+ title(<span class="string">' f(t) = e(-t) cos (2*pi*t) para t = (-2:2)'</span>);
+ xlabel(<span class="string">'t'</span>);
+ ylabel(<span class="string">'f(t)'</span>);
+ plot(t,f(t))
+ grid <span class="string">on</span>;
+
+ subplot (2,1,2)
+ t=(-2:0.01:2);
+ title(<span class="string">' f(t) = e(-t) cos (2*pi*t) para t = (-2:0.01:2)'</span>)
+ xlabel(<span class="string">'t'</span>);
+ ylabel(<span class="string">'f(t)'</span>);
+ plot(t,f(t));
+ grid;
+
+ <span class="comment">% M 1.2 Relational Operators and the Unit Step Function</span>
+ figure(4)
+ subplot(2,1,1)
+ u = @(t) t&gt;=0;
+ t=(-2:2);
+  plot (t,u(t));
+  xlabel(<span class="string">'t'</span>);
+  ylabel(<span class="string">'u(t)'</span>);
+  grid;
+  subplot(2,1,2)
+  t=(-2:0.1:2);
+  plot (t,u(t));
+   xlabel(<span class="string">'t'</span>);
+   ylabel(<span class="string">'u(t)'</span>);
+  axis ([-2 2 -0.1 1.1]);
+  grid <span class="string">on</span>;
+<span class="comment">% M 1.3 Visualizing Operations on the Independent Variable</span>
+g = @(t) exp(-t).*cos(2*pi*t).*(t&gt;=0);
+
+figure (5)
+subplot (3,1,1)
+t = (-2:0.01:2);
+plot(t,g(2*t+1));
+xlabel(<span class="string">'t'</span>);
+ylabel(<span class="string">'g(2t+1)'</span>);
+grid;
+
+subplot (3,1,2)
+t = (-2:0.01:2);
+plot(t,g(-t+1));
+xlabel(<span class="string">'t'</span>);
+ylabel(<span class="string">'h(t)'</span>);
+grid;
+
+subplot (3,1,3)
+h= g(2*t + 1) + g(-t + 1);
+plot(t,h);
+xlabel(<span class="string">'t'</span>);
+ylabel(<span class="string">'h(t)'</span>);
+grid;
+
+<span class="comment">% M1.4 Numerical Integration and Estimating Signal Energy</span>
+x = @(t)exp(-t).*((t&gt;=0)&amp;(t&lt;1));
+t = (0:0.01:1);
+E_x =sum(x(t).*x(t)*0.01) ;
+x_squared = @(t) exp(-2*t).*((t&gt;=0)&amp;(t&gt;1));
+g_squared = @(t) exp(-2*t).*(cos(2*pi*t).^2).*(t&gt;=0);
+t = (0:0.001:100);
+E_g = sum(g_squared(t)*0.001) ;
+</pre><img vspace="5" hspace="5" src="SySprac3CastilloAndoney_02.png" alt=""> <img vspace="5" hspace="5" src="SySprac3CastilloAndoney_03.png" alt=""> <img vspace="5" hspace="5" src="SySprac3CastilloAndoney_04.png" alt=""> <h2>EJERCICIO 6<a name="7"></a></h2><pre class="codeinput">energia=@(t) (t.^2);
+<span class="comment">% problema 1</span>
+energiap1=integral(energia,0,2);
+energiap1_2=integral(energia,0,2);
+s1=energiap1_2+energiap1;
+fprintf(<span class="string">'\nLa suma de las energias problema 1 es: %f'</span>,s1);
+
+<span class="comment">% problema 2</span>
+energiap2= integral (@(t)energia(sin(t)),-pi,pi);
+energiap2_1=integral (@(t)energia(2*t),-pi/2,pi/2);
+s2=energiap2+energiap2_1;
+fprintf(<span class="string">'\nLa suma de las energias problema 2 es: %f'</span>,s2);
+</pre><pre class="codeoutput">
+La suma de las energias problema 1 es: 5.333333
+La suma de las energias problema 2 es: 13.477018</pre><h2>EJERCICIO 7<a name="8"></a></h2><pre class="codeinput">T=2*pi;
+potencia=@(t) (1/T)*(t.^2);
+<span class="comment">% problema 1</span>
+pp1=integral(potencia,0,2);
+pp1_2=integral(potencia,0,2);
+sp1=pp1_2+pp1;
+fprintf(<span class="string">'\nLa suma de las potencias problema 1 es: %f'</span>,sp1);
+
+ <span class="comment">% problema 2</span>
+ potenciap2=integral(@(t)energia(sin(t)),-2*pi,2*pi);
+ potenciap2_1=  integral(@(t)energia(2*t),-pi,pi);
+ sp2=potenciap2+potenciap2_1;
+ fprintf(<span class="string">'\nLa suma de las potencias problema 2 es: %f'</span>,sp2);
+</pre><pre class="codeoutput">
+La suma de las potencias problema 1 es: 0.848826
+La suma de las potencias problema 2 es: 88.966590</pre><h2>REFERENCIAS<a name="9"></a></h2><p>https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-094-introduction-to-matlab-january-iap-2010/lecture-notes/MIT6_094IAP10_lec02.pdf https://la.mathworks.com/help/matlab/matlab_prog/anonymous-functions.html</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2014a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% PRÁCTICA 3: Señales en tiempo continuo
+% * Andoney Valdez Daniel
+% * Castillo Silva Marlene Vanessa
+% 
+%% 
+%% INTRODUCCION
+% ¿Qué es Matlab? Matlab significa "Matrix Laboratory" o en español "Laboratorio de
+%  la idea de ayudar a los estudiantes para que ya no programaran una serie
+%  de algoritmos para llevar a cabo alún análisis númerico. Actualmente
+%  Matlab es distribuido por MathWorks, Inc desde el año 1984.
+%  Existen softwares que son parecidos a Matlab con la diferencia que son
+% libres que son: 
+%%
+% 
+% * Octave el cual es un entorno orientado al cálculo numérico científico.
+%   Además, cuenta con herramientas para la resolución de problemas de  
+%   cálculo numérico lineales y no lineales: álgebra lineal, aproximación de 
+%   raíces de ecuaciones, integración numérica, integración de ecuaciones
+%   diferenciales, etc., así como para la representación de gráficos en dos y
+%   tres dimensiones. Aquí puedes consultar más información sobre este
+%   software: <https://rodin.uca.es/xmlui/bitstream/handle/10498/18932/Octave_Calculo_Numerico.pdf?sequence=1&isAllowed=y>
+% * Python es un lenguaje de programación de alto nivel, el cual es 
+%   compatible con el lenguaje C. Al ser un software de código abierto y
+%   gratuito. Aquí puedes consultar más informacón sobre este software:
+%   _<http://colenak.ptkpt.net/_lain.php?_lain=3721>_
+% 
+
+
+%% EJERCICIO 1
+fun1;
+%% EJERCICIO 2
+%w=-2:0.01:2;
+%figure(1)
+%fu1;
+%% EJERCICIO 3
+figure(2)
+TF;
+%% EJERCICIO 4
+% M 1.1 Inline Functions 
+ f = @(t) exp(-t).*cos(2*pi*t);
+
+ figure(3)
+ subplot (2,1,1) 
+ t=(-2:2);
+ title(' f(t) = e(-t) cos (2*pi*t) para t = (-2:2)');
+ xlabel('t');
+ ylabel('f(t)');  
+ plot(t,f(t))
+ grid on;
+ 
+ subplot (2,1,2)
+ t=(-2:0.01:2);
+ title(' f(t) = e(-t) cos (2*pi*t) para t = (-2:0.01:2)')
+ xlabel('t');
+ ylabel('f(t)'); 
+ plot(t,f(t));
+ grid;
+ 
+ % M 1.2 Relational Operators and the Unit Step Function 
+ figure(4)
+ subplot(2,1,1)
+ u = @(t) t>=0;
+ t=(-2:2);
+  plot (t,u(t)); 
+  xlabel('t');
+  ylabel('u(t)');
+  grid;
+  subplot(2,1,2)
+  t=(-2:0.1:2);
+  plot (t,u(t));
+   xlabel('t');
+   ylabel('u(t)');
+  axis ([-2 2 -0.1 1.1]);
+  grid on;
+% M 1.3 Visualizing Operations on the Independent Variable
+g = @(t) exp(-t).*cos(2*pi*t).*(t>=0);
+  
+figure (5)
+subplot (3,1,1)
+t = (-2:0.01:2); 
+plot(t,g(2*t+1)); 
+xlabel('t'); 
+ylabel('g(2t+1)'); 
+grid;
+  
+subplot (3,1,2)
+t = (-2:0.01:2); 
+plot(t,g(-t+1)); 
+xlabel('t');
+ylabel('h(t)');
+grid;
+
+subplot (3,1,3) 
+h= g(2*t + 1) + g(-t + 1);
+plot(t,h);
+xlabel('t'); 
+ylabel('h(t)'); 
+grid;
+    
+% M1.4 Numerical Integration and Estimating Signal Energy
+x = @(t)exp(-t).*((t>=0)&(t<1));
+t = (0:0.01:1);
+E_x =sum(x(t).*x(t)*0.01) ;
+x_squared = @(t) exp(-2*t).*((t>=0)&(t>1));
+g_squared = @(t) exp(-2*t).*(cos(2*pi*t).^2).*(t>=0);
+t = (0:0.001:100); 
+E_g = sum(g_squared(t)*0.001) ;
+ 
+ %% EJERCICIO 6
+energia=@(t) (t.^2);
+% problema 1
+energiap1=integral(energia,0,2);
+energiap1_2=integral(energia,0,2);
+s1=energiap1_2+energiap1;
+fprintf('\nLa suma de las energias problema 1 es: %f',s1);
+
+% problema 2
+energiap2= integral (@(t)energia(sin(t)),-pi,pi);
+energiap2_1=integral (@(t)energia(2*t),-pi/2,pi/2);
+s2=energiap2+energiap2_1;
+fprintf('\nLa suma de las energias problema 2 es: %f',s2);
+
+ 
+%% EJERCICIO 7
+T=2*pi;
+potencia=@(t) (1/T)*(t.^2);
+% problema 1
+pp1=integral(potencia,0,2);
+pp1_2=integral(potencia,0,2);
+sp1=pp1_2+pp1;
+fprintf('\nLa suma de las potencias problema 1 es: %f',sp1);
+
+ % problema 2
+ potenciap2=integral(@(t)energia(sin(t)),-2*pi,2*pi);
+ potenciap2_1=  integral(@(t)energia(2*t),-pi,pi);
+ sp2=potenciap2+potenciap2_1;
+ fprintf('\nLa suma de las potencias problema 2 es: %f',sp2); 
+ 
+ %% REFERENCIAS
+ % https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-094-introduction-to-matlab-january-iap-2010/lecture-notes/MIT6_094IAP10_lec02.pdf
+ % https://la.mathworks.com/help/matlab/matlab_prog/anonymous-functions.html
+ 
+##### SOURCE END #####
+--></body></html>
